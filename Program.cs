@@ -16,9 +16,16 @@ namespace AnnikaAvikaBirthday
                 _ => throw new Exception("Wrong name somehow")
             };
 
-            WrongPassword:
+            string hint = name switch
+            {
+                "annika" => "Ur superhero name for me",
+                "avika" => "Most memorable moment of the trip back from Tauranga",
+                _ => throw new Exception("Wrong name somehow")
+            };
 
-            string password = GetUserInput("Enter your password: ", true);
+        WrongPassword:
+
+            string password = GetUserInput($"Hint: {hint}\nEnter your password: ", true);
 
             string decrypted = Decrypt(encryptedDir, password);
 
@@ -47,7 +54,7 @@ namespace AnnikaAvikaBirthday
             }
 
             Console.Clear();
-            Console.WriteLine("Happy birthday you two");
+            Console.WriteLine("Happy birthday " + name);
         }
 
         static void Encrypt(string inputFile, string outputFile, string password)
